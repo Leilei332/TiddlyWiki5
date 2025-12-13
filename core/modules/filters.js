@@ -290,7 +290,7 @@ exports.compileFilter = function(filterString) {
 						operand.multiValue = [operand.value];
 					} else if(operand.variable) {
 						var varTree = $tw.utils.parseFilterVariable(operand.text);
-						operand.value = widgetClass.evaluateVariable(widget,varTree.name,{params: varTree.params, source: source})[0] || "";
+						operand.value = $tw.utils.getStr(widgetClass.evaluateVariable(widget,varTree.name,{params: varTree.params, source: source})[0]);
 						operand.multiValue = [operand.value];
 					} else if(operand.multiValuedVariable) {
 						var varTree = $tw.utils.parseFilterVariable(operand.text);
