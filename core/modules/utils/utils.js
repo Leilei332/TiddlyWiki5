@@ -1016,6 +1016,9 @@ exports.parseInt = function(str) {
 	return parseInt(str,10) || 0;
 };
 
+// TODO: Should be replaced by ?? in 2020 baseline
+exports.getStr = str => ((str === undefined || str === null) ? "" : str);
+
 exports.stringifyNumber = function(num) {
 	return num + "";
 };
