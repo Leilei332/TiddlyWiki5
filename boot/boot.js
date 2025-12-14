@@ -8,6 +8,8 @@ On the server this file is executed directly to boot TiddlyWiki. In the browser,
 
 \*/
 
+//test
+
 /* eslint-disable @stylistic/indent */
 
 var _boot = (function($tw) {
