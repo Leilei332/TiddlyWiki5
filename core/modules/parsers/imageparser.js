@@ -9,24 +9,26 @@ The image parser parses an image into an embeddable HTML element
 
 "use strict";
 
-var ImageParser = function(type,text,options) {
-	var element = {
-		type: "image",
-		attributes: {}
-	};
-	if(options._canonical_uri) {
-		element.attributes.source = {type: "string", value: options._canonical_uri};
-	} else if(text) {
-		if(type === "image/svg+xml" || type === ".svg") {
-			element.attributes.source = {type: "string", value: "data:image/svg+xml," + encodeURIComponent(text)};
-		} else {
-			element.attributes.source = {type: "string", value: "data:" + type + ";base64," + text};
+class ImageParser {
+	constructor(type, text, options) {
+		var element = {
+			type: "image",
+			attributes: {}
+		};
+		if(options._canonical_uri) {
+			element.attributes.source = { type: "string", value: options._canonical_uri };
+		} else if(text) {
+			if(type === "image/svg+xml" || type === ".svg") {
+				element.attributes.source = { type: "string", value: "data:image/svg+xml," + encodeURIComponent(text) };
+			} else {
+				element.attributes.source = { type: "string", value: "data:" + type + ";base64," + text };
+			}
 		}
+		this.tree = [element];
+		this.source = text;
+		this.type = type;
 	}
-	this.tree = [element];
-	this.source = text;
-	this.type = type;
-};
+}
 
 exports["image/svg+xml"] = ImageParser;
 exports["image/jpg"] = ImageParser;
